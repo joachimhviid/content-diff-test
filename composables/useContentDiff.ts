@@ -1,4 +1,5 @@
 import { Diff, DIFF_DELETE, DIFF_EQUAL, DIFF_INSERT, diff_match_patch } from 'diff-match-patch'
+import { detailedDiff } from 'deep-object-diff'
 export const useContentDiff = () => {
   const dmp = new diff_match_patch()
 
@@ -45,7 +46,12 @@ export const useContentDiff = () => {
     }).join('')
   }
 
+  const getModelDiff = (oldModel: object, newModel: object) => {
+    return detailedDiff(oldModel, newModel)
+  }
+
   return {
-    getContentDiff
+    getContentDiff,
+    getModelDiff,
   }
 }
