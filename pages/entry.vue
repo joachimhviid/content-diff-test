@@ -30,13 +30,10 @@ const testCompareEntryJson = ref(JSON.stringify({
 const { getModelDiff } = useContentDiff()
 
 const resultEntryJson = ref(getModelDiff(JSON.parse(testEntryJson.value), JSON.parse(testCompareEntryJson.value)))
+// probably debounce this
 watch([testEntryJson, testCompareEntryJson], () => {
   resultEntryJson.value = getModelDiff(JSON.parse(testEntryJson.value), JSON.parse(testCompareEntryJson.value))
   console.log(resultEntryJson.value)
-})
-
-const test = ref({
-  hello: undefined
 })
 </script>
 
@@ -64,10 +61,6 @@ const test = ref({
     <div>
       <h3>Updated</h3>
       <div v-text="resultEntryJson.updated"></div>
-    </div>
-    <div>
-      <h3>Test</h3>
-      <div v-text="test"></div>
     </div>
   </div>
 </template>
