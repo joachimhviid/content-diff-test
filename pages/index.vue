@@ -11,7 +11,7 @@ const { getContentDiff } = useContentDiff()
 watch([htmlContent1, htmlContent2], () => {
   outputHtml.value = getContentDiff(htmlContent1.value, htmlContent2.value)
 })
-
+console.log("hello")
 </script>
 
 <template>
