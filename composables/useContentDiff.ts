@@ -1,6 +1,5 @@
 import { Diff, DIFF_DELETE, DIFF_EQUAL, DIFF_INSERT, diff_match_patch } from 'diff-match-patch'
 import { detailedDiff } from 'deep-object-diff'
-// import diff from 'node-htmldiff'
 export const useContentDiff = () => {
   const dmp = new diff_match_patch()
 
@@ -9,13 +8,12 @@ export const useContentDiff = () => {
     dmp.diff_cleanupSemantic(diffs)
 
     return wrapWithHTMLTags(mendHTMLTags(diffs))
-    // return diff(oldContent, newContent)
   }
 
   const mendHTMLTags = (diffList: Diff[]): Diff[] => {
     const resultArray: Diff[] = []
     const incompleteTagRegex = /<[^>]*>?$/m
-    let shouldAddToNext: [boolean, string] = [false, diffList[0][1].match(incompleteTagRegex)?.[0] ?? '']
+    let shouldAddToNext: [boolean, string] = [false, '']
 
     diffList.forEach(([type, text]) => {
       const match = text.match(incompleteTagRegex)
